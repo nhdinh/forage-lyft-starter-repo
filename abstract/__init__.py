@@ -5,4 +5,4 @@ from abstract.battery import Battery
 from abstract.engine import Engine
 from abstract.serviceable import Serviceable
 
-__all__ = ['Battery', 'Engine', 'Serviceable']
+__all__ = ["Battery", "Engine", "Serviceable"]
