@@ -1,8 +1,10 @@
 from datetime import date
+from typing import List
 
 from batteries import NubbinBattery, SpindlerBattery
 from car import Car
 from engine import WilloughbyEngine, SternmanEngine, CapuletEngine
+from tires import OctoprimeTires, CarriganTires
 
 
 class CarFactory:
@@ -12,6 +14,7 @@ class CarFactory:
         last_service_date: date,
         current_mileage: int,
         last_service_mileage: int,
+        tires_sensor_data: List[float],
     ) -> Car:
         battery = SpindlerBattery(
             current_date=current_date, last_service_date=last_service_date
@@ -20,7 +23,10 @@ class CarFactory:
             current_mileage=current_mileage,
             last_service_mileage=last_service_mileage,
         )
-        calliope = Car(battery=battery, engine=engine)
+
+        tires = OctoprimeTires(tires_sensor_data=tires_sensor_data)
+
+        calliope = Car(battery=battery, engine=engine, tires=tires)
         return calliope
 
     @staticmethod
@@ -29,6 +35,7 @@ class CarFactory:
         last_service_date: date,
         current_mileage: int,
         last_service_mileage: int,
+        tires_sensor_data: List[float],
     ) -> Car:
         battery = SpindlerBattery(
             current_date=current_date, last_service_date=last_service_date
@@ -37,18 +44,24 @@ class CarFactory:
             current_mileage=current_mileage,
             last_service_mileage=last_service_mileage,
         )
-        glissade = Car(battery=battery, engine=engine)
+
+        tires = OctoprimeTires(tires_sensor_data=tires_sensor_data)
+        glissade = Car(battery=battery, engine=engine, tires=tires)
         return glissade
 
     @staticmethod
     def create_palindrome(
-        current_date: date, last_service_date: date, warning_light_on: bool
+        current_date: date,
+        last_service_date: date,
+        warning_light_on: bool,
+        tires_sensor_data: List[float],
     ) -> Car:
         battery = SpindlerBattery(
             current_date=current_date, last_service_date=last_service_date
         )
         engine = SternmanEngine(warning_light_is_on=warning_light_on)
-        palindrome = Car(battery=battery, engine=engine)
+        tires = CarriganTires(tires_sensor_data=tires_sensor_data)
+        palindrome = Car(battery=battery, engine=engine, tires=tires)
         return palindrome
 
     @staticmethod
@@ -57,6 +70,7 @@ class CarFactory:
         last_service_date: date,
         current_mileage: int,
         last_service_mileage: int,
+        tires_sensor_data: List[float],
     ) -> Car:
         battery = NubbinBattery(
             current_date=current_date, last_service_date=last_service_date
@@ -65,7 +79,8 @@ class CarFactory:
             current_mileage=current_mileage,
             last_service_mileage=last_service_mileage,
         )
-        rorschach = Car(battery=battery, engine=engine)
+        tires = CarriganTires(tires_sensor_data=tires_sensor_data)
+        rorschach = Car(battery=battery, engine=engine, tires=tires)
         return rorschach
 
     @staticmethod
@@ -74,6 +89,7 @@ class CarFactory:
         last_service_date: date,
         current_mileage: int,
         last_service_mileage: int,
+        tires_sensor_data: List[float],
     ) -> Car:
         battery = NubbinBattery(
             current_date=current_date, last_service_date=last_service_date
@@ -83,5 +99,6 @@ class CarFactory:
             current_mileage=current_mileage,
             last_service_mileage=last_service_mileage,
         )
-        thovex = Car(battery=battery, engine=engine)
+        tires = CarriganTires(tires_sensor_data=tires_sensor_data)
+        thovex = Car(battery=battery, engine=engine, tires=tires)
         return thovex

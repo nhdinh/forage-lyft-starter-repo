@@ -1,0 +1,25 @@
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+
+'''
+
+[tool.vulture]
+exclude = ["tests/", "test/"]
+make_whitelist = true
+min_confidence = 80
+paths = ["ms_inventory"]
+sort_by_size = true
+verbose = true
